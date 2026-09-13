@@ -34,6 +34,13 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Prepare CI test environment
+        run: |
+          pnpm db:push
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends fonts-noto-core
+          sudo mkdir -p /home/ubuntu
+          sudo ln -sfn "$GITHUB_WORKSPACE" /home/ubuntu/qingshui-media-equipment
       - run: pnpm check
       - run: pnpm test
       - run: pnpm build
