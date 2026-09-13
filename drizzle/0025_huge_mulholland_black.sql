@@ -1,0 +1,1 @@
+ALTER TABLE `passkey_credentials` ADD `registeredDeviceLabel` varchar(128) DEFAULT '未知裝置' NOT NULL;

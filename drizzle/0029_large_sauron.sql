@@ -1,0 +1,1 @@
+ALTER TABLE `system_reports` ADD `mustReadBy` timestamp;

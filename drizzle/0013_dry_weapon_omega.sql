@@ -1,0 +1,2 @@
+ALTER TABLE `borrow_records` MODIFY COLUMN `requestId` int;--> statement-breakpoint
+ALTER TABLE `equipment` MODIFY COLUMN `status` enum('available','borrowed','maintenance','retired') NOT NULL DEFAULT 'available';

@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `clubRole` enum('president','vice_president','pr_director','pr_secretary','activity_director','vice_activity_director','teaching','general_affairs','art_web_admin','club_advisor','club_admin');

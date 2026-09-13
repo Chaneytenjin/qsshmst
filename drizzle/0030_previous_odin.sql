@@ -1,0 +1,1 @@
+ALTER TABLE `account_activation_certificate_deliveries` ADD `hasPdfAttachment` boolean DEFAULT false NOT NULL;

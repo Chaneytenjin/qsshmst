@@ -1,0 +1,17 @@
+{
+  "name": "清水高中媒體服務隊管理系統",
+  "short_name": "清水高中媒體服務隊",
+  "lang": "zh-Hant",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06101d",
+  "theme_color": "#06101d",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

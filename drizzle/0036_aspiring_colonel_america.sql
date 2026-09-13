@@ -1,0 +1,2 @@
+ALTER TABLE `login_audit_logs` ADD `loginMethod` enum('password','passkey') DEFAULT 'password' NOT NULL;--> statement-breakpoint
+ALTER TABLE `two_factor_login_challenges` ADD `loginMethod` enum('password','passkey') DEFAULT 'password' NOT NULL;

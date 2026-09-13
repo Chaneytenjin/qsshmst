@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `temporaryPasswordCiphertext` varchar(1024);

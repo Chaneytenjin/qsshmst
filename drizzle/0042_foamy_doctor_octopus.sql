@@ -1,0 +1,3 @@
+CREATE INDEX `equipment_location_history_changed_at_idx` ON `equipment_location_history` (`changedAt`);--> statement-breakpoint
+CREATE INDEX `equipment_location_history_equipment_changed_at_idx` ON `equipment_location_history` (`equipmentId`,`changedAt`);--> statement-breakpoint
+CREATE INDEX `equipment_location_history_new_location_changed_at_idx` ON `equipment_location_history` (`newLocation`,`changedAt`);

@@ -1,0 +1,1 @@
+ALTER TABLE `equipment` MODIFY COLUMN `qrCodeId` varchar(128) NOT NULL DEFAULT '';

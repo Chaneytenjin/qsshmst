@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /certificate-verify
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /users
+Disallow: /system-management
+Disallow: /audit-center/
+Sitemap: https://your-domain.example/sitemap.xml

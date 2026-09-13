@@ -1,0 +1,1 @@
+ALTER TABLE `account_activation_certificate_deliveries` ADD `recipientEmailCiphertext` varchar(1024);

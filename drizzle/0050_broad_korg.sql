@@ -1,0 +1,1 @@
+ALTER TABLE `system_maintenance_settings` ADD `systemMode` enum('online','maintenance','offline') DEFAULT 'online' NOT NULL;

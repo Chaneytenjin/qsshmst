@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `auditPinHash` varchar(255);
