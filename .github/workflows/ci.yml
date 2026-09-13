@@ -37,6 +37,21 @@ jobs:
       - name: Prepare CI test environment
         run: |
           pnpm drizzle-kit push --force
+          node --input-type=module <<'NODE'
+          import mysql from "mysql2/promise";
+          const db = await mysql.createConnection({
+            host: "127.0.0.1",
+            port: 3306,
+            user: "root",
+            password: "ci-root-password",
+            database: "qingshui_media_ci",
+          });
+          await db.execute(
+            "INSERT INTO users (openId, username, name, role, isActive, isFounder) VALUES (?, ?, ?, 'admin', 1, 1) ON DUPLICATE KEY UPDATE isFounder = 1, role = 'admin', isActive = 1",
+            ["ci-founder", "Chaney", "CI Founder"],
+          );
+          await db.end();
+          NODE
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends fonts-noto-core
           sudo mkdir -p /home/ubuntu
