@@ -36,7 +36,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Prepare CI test environment
         run: |
-          pnpm db:push
+          pnpm drizzle-kit push --force
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends fonts-noto-core
           sudo mkdir -p /home/ubuntu
