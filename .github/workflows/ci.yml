@@ -23,7 +23,6 @@ jobs:
           --health-timeout=5s
           --health-retries=12
     env:
-      TZ: Asia/Taipei
       DATABASE_URL: mysql://root:ci-root-password@127.0.0.1:3306/qingshui_media_ci
       JWT_SECRET: ci-only-secret-that-is-longer-than-thirty-two-characters
       PUBLIC_APP_URL: http://localhost:3000

@@ -17,7 +17,7 @@ describe("登入稽核時間格式", () => {
 
   it("以 24 小時制顯示登入時間，不顯示上午或下午", () => {
     render(<LoginAudit />);
-    const expected = new Intl.DateTimeFormat("zh-TW", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false, hourCycle: "h23" }).format(new Date("2026-08-13T13:05:06.000Z"));
+    const expected = new Intl.DateTimeFormat("zh-TW", { timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false, hourCycle: "h23" }).format(new Date("2026-08-13T13:05:06.000Z"));
     expect(screen.getByText(expected)).toBeInTheDocument();
     expect(screen.queryByText(/上午|下午/)).not.toBeInTheDocument();
   });
