@@ -8,6 +8,10 @@ vi.mock("./accountActivationEmail", () => ({
   sendAccountActivationCertificate: emailMocks.sendAccountActivationCertificate,
 }));
 
+vi.mock("./accountActivationCertificatePdf", () => ({
+  buildAccountActivationCertificatePdf: vi.fn().mockResolvedValue(Buffer.from("ci-test-pdf")),
+}));
+
 import { appRouter } from "./routers";
 import { deleteUser, getUserByUsername } from "./db";
 import { decryptTemporaryPassword } from "./temporaryPasswordVault";

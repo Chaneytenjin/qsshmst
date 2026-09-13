@@ -2774,7 +2774,7 @@ export async function getOperationLogs(opts?: {
     .from(operationLogs)
     .leftJoin(users, eq(operationLogs.userId, users.id))
     .where(conditions.length > 0 ? and(...conditions) : undefined)
-    .orderBy(desc(operationLogs.createdAt))
+    .orderBy(desc(operationLogs.createdAt), desc(operationLogs.id))
     .limit(opts?.limit ?? 100)
     .offset(opts?.offset ?? 0);
 
