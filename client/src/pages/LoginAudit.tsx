@@ -97,6 +97,7 @@ export default function LoginAudit() {
     const d = new Date(date);
     if (Number.isNaN(d.getTime())) return "-";
     return d.toLocaleString("zh-TW", {
+      timeZone: "Asia/Taipei",
       year: "numeric",
       month: "2-digit",
       day: "2-digit",

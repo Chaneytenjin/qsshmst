@@ -18,9 +18,10 @@ import { decryptTemporaryPassword } from "./temporaryPasswordVault";
 
 let createdUserId: number | undefined;
 
-function createAdminCaller() {
+async function createAdminCaller() {
+  const founder = await getUserByUsername("Chaney");
   return appRouter.createCaller({
-    user: { id: 3570001, username: "Chaney", name: "Chaney", role: "admin", isFounder: true },
+    user: { id: founder?.id ?? 3570001, username: "Chaney", name: "Chaney", role: "admin", isFounder: true },
     req: {
       protocol: "https",
       get: (name: string) => name.toLowerCase() === "host" ? "app.example.test" : undefined,
@@ -35,7 +36,7 @@ describe("帳號建立至啟用書的受控臨時密碼流程", () => {
   });
 
   it("建立帳號後只在受控回傳與啟用書伺服器呼叫中提供明文，資料庫只保存密文", async () => {
-    const caller = createAdminCaller();
+    const caller = await createAdminCaller();
     const created = await caller.users.create({
       name: "整合流程驗證帳號",
       email: "integration-certificate@example.com",
