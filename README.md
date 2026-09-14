@@ -93,6 +93,23 @@ git push -u origin main
 
 推送前請確認 `git status` 沒有顯示密鑰、資料庫匯出檔、使用者資料或實際上傳附件。部署平台只需執行 `pnpm install`、`pnpm build`，再以 `pnpm start` 啟動 Express 伺服器。
 
+## GitHub Pages 與完整系統部署
+
+GitHub Pages 只能提供靜態前端檔案，不能執行本專案所需的 Express、tRPC、MySQL、HTTP-only session、S3 signed URL 或 SMTP。因此，不能把 repository 的 `main` 根目錄直接設定為 Pages 來源；那樣會顯示 README 或原始碼，而不是建置後的網站。
+
+本 repository 已加入 `.github/workflows/deploy-pages.yml`。它會在前端相關檔案更新時執行 `pnpm build`，只將 `dist/public` 上傳到 GitHub Pages，並自動建立 SPA 的 `404.html` fallback 與自訂網域 `qsshmst.qshs.tw`。若前端要呼叫獨立後端，請在 repository 的 **Settings → Secrets and variables → Actions → Variables** 設定公開變數 `VITE_API_BASE_URL`，例如 `https://api.example.com`。後端必須另外設定 CORS，允許前端網域並支援 credentials；若未設定，前端預設使用同源 `/api/trpc`，適合與 Express 一起部署。
+
+完整可登入、可讀寫資料的部署，請使用支援 Node.js 22、MySQL、S3／R2／MinIO、SMTP 與 HTTPS 的主機或容器服務。正式服務執行方式如下：
+
+```bash
+pnpm install --frozen-lockfile
+pnpm db:push
+pnpm build
+NODE_ENV=production PORT=3000 pnpm start
+```
+
+GitHub Pages 的成功部署只代表靜態前端已發布，不代表完整後端已上線。若只部署 Pages 而沒有設定 `VITE_API_BASE_URL` 與可用的獨立後端，登入、資料查詢、檔案與寄信功能不會正常運作。
+
 ## 資料庫與 migration
 
 `drizzle/` 內包含完整 schema 與 migration。Google Calendar 欄位的新增 migration 為 `0067_motionless_namora.sql`，只新增欄位與唯一索引，不會刪除既有行事曆資料。正式環境套用 migration 前，請先備份資料庫並在測試資料庫驗證：
